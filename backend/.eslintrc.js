@@ -1,30 +1,20 @@
 module.exports = {
-    ignorePatterns: ['build/', 'dist/', 'node_modules/'],
-    extends: ['eslint:recommended'],
-    plugins: ['prettier'],
-    settings: {
-        // No specific settings needed for React
-    },
-    parserOptions: {
-        ecmaVersion: 'latest', // Using the latest version of ECMAScript
-        sourceType: 'module', // Support syntax of ECMAScript modules
-    },
     env: {
-        browser: false, // This is a Node.js app, no browser involved
-        es6: true,
-        node: true, // Enable Node.js global variables and Node.js scoping
+        browser: true, // Cho phép các biến toàn cục của trình duyệt như window và document
+        es2021: true, // Hỗ trợ các tính năng ES2021
+        node: false  // Đảm bảo ESLint biết bạn không đang làm việc trong môi trường Node.js
+    },
+    extends: [
+        'eslint:recommended' // Sử dụng tập hợp các quy tắc được khuyên dùng bởi ESLint
+    ],
+    parserOptions: {
+        ecmaVersion: 12, // Hoặc phiên bản ECMAScript nào phù hợp với tính năng bạn sử dụng
+        sourceType: 'module', // Cho phép sử dụng import/export modules
     },
     rules: {
-        'prettier/prettier': [
-            'error',
-            {
-                singleQuote: true,
-                printWidth: 120,
-                parser: 'babel-ts',
-            },
-        ],
-        // You can customize your rules here
-        'no-unused-vars': 'warn',
-        'no-console': 'off', // Considering you might want to allow console logs in a Node.js app
-    },
+        'no-unused-vars': 'warn', // Cảnh báo biến không sử dụng
+        'no-undef': 'error', // Lỗi nếu sử dụng biến không được khai báo
+        'eqeqeq': ['error', 'always'], // Yêu cầu sử dụng === và !== thay vì == và !=
+        // Thêm các quy tắc khác tùy theo nhu cầu của bạn
+    }
 };
