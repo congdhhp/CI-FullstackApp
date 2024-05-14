@@ -1,38 +1,30 @@
 module.exports = {
     ignorePatterns: ['build/', 'dist/', 'node_modules/'],
-    extends: ['eslint:recommended', 'plugin:react/recommended'],
-    plugins: ['react', 'prettier'],
+    extends: ['eslint:recommended'],
+    plugins: ['prettier'],
     settings: {
-      react: {
-        version: 'detect',
-      },
+        // No specific settings needed for React
     },
     parserOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-      ecmaFeatures: {
-        jsx: true,
-      },
+        ecmaVersion: 'latest', // Using the latest version of ECMAScript
+        sourceType: 'module', // Support syntax of ECMAScript modules
     },
     env: {
-      browser: true,
-      es6: true,
-      node: true,
-      jest: true,
+        browser: false, // This is a Node.js app, no browser involved
+        es6: true,
+        node: true, // Enable Node.js global variables and Node.js scoping
     },
     rules: {
-      'prettier/prettier': [
-        'error',
-        {
-          singleQuote: true,
-          jsxSingleQuote: false,
-          printWidth: 120,
-          parser: 'babel-ts',
-        },
-      ],
-      // Customize your rules here
-      'react/prop-types': process.env.FAIL_LINT ? 2 : 0,
-      'react/jsx-uses-vars': 'warn',
+        'prettier/prettier': [
+            'error',
+            {
+                singleQuote: true,
+                printWidth: 120,
+                parser: 'babel-ts',
+            },
+        ],
+        // You can customize your rules here
+        'no-unused-vars': 'warn',
+        'no-console': 'off', // Considering you might want to allow console logs in a Node.js app
     },
-  };
-  
+};
